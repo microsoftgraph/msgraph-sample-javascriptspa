@@ -47,48 +47,26 @@ In this exercise you will extend the application from the previous exercise to s
 
 ## Implement sign-in
 
-In this section you'll implement the `signIn` function and get an access token.
-
-1. Add the following function to `auth.js` to get an access token.
-
-    ```javascript
-    function getAccessToken(scopes) {
-      // First attempt to get token silently
-      // This should work if the user is logged in and has already
-      // granted consent to the requested permission scopes
-      return msalClient.acquireTokenSilent(scopes)
-        .catch(error => {
-          console.log('Silent token acquisition failed. Acquiring token using popup.');
-          // Fallback to interactive when silent acquisition fails
-          return msalClient.acquireTokenPopup(scopes)
-            .then(tokenResponse => {
-            }).catch(error => {
-              console.log(error);
-            });
-        });
-    }
-    ```
+In this section you'll implement the `signIn` and `signOut` functions.
 
 1. Replace the existing `signIn` function with the following.
 
     ```javascript
-    function signIn() {
+    async function signIn() {
       // Login
-      msalClient.loginPopup(loginRequest)
-        .then(loginResponse => {
-          // Login response contains an ID token, which
-          // MSAL uses to create an account object
-          console.log('id_token acquired at: ' + new Date().toString());
-          if (msalClient.getAccount()) {
-            updatePage(msalClient.getAccount(), Views.home);
-          }
-        }).catch(error => {
-          console.log(error);
-          updatePage(null, Views.error, {
-            message: 'Error logging in',
-            debug: error
-          });
+      try {
+        await msalClient.loginPopup(loginRequest);
+        console.log('id_token acquired at: ' + new Date().toString());
+        if (msalClient.getAccount()) {
+          updatePage(msalClient.getAccount(), Views.home);
+        }
+      } catch (error) {
+        console.log(error);
+        updatePage(null, Views.error, {
+          message: 'Error logging in',
+          debug: error
         });
+      }
     }
     ```
 
