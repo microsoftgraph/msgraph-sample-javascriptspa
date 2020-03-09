@@ -3,7 +3,7 @@ const authenticatedNav = document.getElementById('authenticated-nav');
 const accountNav = document.getElementById('account-nav');
 const mainContainer = document.getElementById('main-container');
 
-const Views = { home: 1, calendar: 2 };
+const Views = { error: 1, home: 2, calendar: 3 };
 
 function createElement(type, className, text) {
   var element = document.createElement(type);
@@ -40,7 +40,7 @@ function showAccountNav(account) {
     var userName = createElement('h5', 'dropdown-item-text mb-0', account.name);
     menu.appendChild(userName);
 
-    var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', account.mail);
+    var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', account.userName);
     menu.appendChild(userEmail);
 
     var divider = createElement('div', 'dropdown-divider');
@@ -91,17 +91,43 @@ function showWelcomeMessage(account) {
   mainContainer.appendChild(jumbotron);
 }
 
-function updatePage(account, view) {
-  showAccountNav(account);
+function showError(error) {
+  var alert = createElement('div', 'alert alert-danger');
 
-  if (account) {
-    switch (view) {
-      case Views.calendar:
-        break;
-    }
+  var message = createElement('p', 'mb-3', error.message);
+  alert.appendChild(message);
+
+  if (error.debug)
+  {
+    var pre = createElement('pre', 'alert-pre border bg-light p-2');
+    alert.appendChild(pre);
+
+    var code = createElement('code', 'text-break text-wrap',
+      JSON.stringify(error.debug, null, 2));
+    pre.appendChild(code);
   }
 
-  showWelcomeMessage(account);
+  mainContainer.innerHTML = '';
+  mainContainer.appendChild(alert);
+}
+
+function updatePage(account, view, error) {
+  showAccountNav(account);
+
+  if (!view || !account) {
+    view = Views.home;
+  }
+
+  switch (view) {
+    case Views.error:
+      showError(error);
+      break;
+    case Views.home:
+      showWelcomeMessage(account);
+      break;
+    case Views.calendar:
+      break;
+  }
 }
 
 updatePage(null, Views.home);

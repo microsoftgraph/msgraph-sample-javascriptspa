@@ -1,0 +1,20 @@
+const msalConfig = {
+  auth: {
+    clientId: 'YOUR_APP_ID_HERE',
+    redirectUri: 'http://localhost:8080'
+  },
+  cache: {
+    cacheLocation: "sessionStorage",
+    storeAuthStateInCookie: false,
+    forceRefresh: false
+  }
+};
+
+const loginRequest = {
+  scopes: [
+    'openid',
+    'profile',
+    'user.read',
+    'calendars.read'
+  ]
+}
