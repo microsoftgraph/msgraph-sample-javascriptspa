@@ -17,7 +17,25 @@ function createElement(type, className, text) {
   return element;
 }
 
-function showAccountNav(account) {
+function showAuthenticatedNav(account, view) {
+  authenticatedNav.innerHTML = '';
+
+  if (account) {
+    // Add Calendar link
+    var calendarNav = createElement('li', 'nav-item');
+
+    var calendarLink = createElement('a',
+      view === Views.calendar ? 'nav-link active' : 'nav-link',
+      'Calendar');
+    calendarLink.setAttribute('onclick', 'getEvents();');
+    calendarNav.appendChild(calendarLink);
+
+    authenticatedNav.appendChild(calendarNav);
+  }
+}
+
+function showAccountNav(account, view) {
+
   accountNav.innerHTML = '';
 
   if (account) {
@@ -112,11 +130,12 @@ function showError(error) {
 }
 
 function updatePage(account, view, error) {
-  showAccountNav(account);
-
   if (!view || !account) {
     view = Views.home;
   }
+
+  showAccountNav(account);
+  showAuthenticatedNav(account, view);
 
   switch (view) {
     case Views.error:
