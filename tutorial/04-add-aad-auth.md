@@ -32,17 +32,6 @@ In this exercise you will extend the application from the previous exercise to s
     > [!IMPORTANT]
     > If you're using source control such as git, now would be a good time to exclude the `config.js` file from source control to avoid inadvertently leaking your app ID.
 
-1. Open `index.html` and add the following `<script>` statements near the bottom of the file, just above the `<script src="auth.js"></script>` line.
-
-    ```html
-    <!-- MSAL -->
-    <script src="//cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.min.js"></script>
-    <script src="https://alcdn.msftauth.net/lib/1.2.1/js/msal.js"
-            integrity="sha384-9TV1245fz+BaI+VvCjMYL0YDMElLBwNS84v3mY57pXNOt6xcUYch2QLImaTahcOP"
-            crossorigin="anonymous"></script>
-    <script src="config.js"></script>
-    ```
-
 1. Open `auth.js` and add the following code to the beginning of the file.
 
     ```javascript

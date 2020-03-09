@@ -83,13 +83,29 @@ In this section you'll create the basic UI layout for the application.
               integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
               crossorigin="anonymous"></script>
 
+      <!-- MSAL -->
+      <script src="//cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.min.js"></script>
+      <script src="https://alcdn.msftauth.net/lib/1.2.1/js/msal.js"
+              integrity="sha384-9TV1245fz+BaI+VvCjMYL0YDMElLBwNS84v3mY57pXNOt6xcUYch2QLImaTahcOP"
+              crossorigin="anonymous"></script>
+
+      <!-- Graph SDK -->
+      <script src="https://cdn.jsdelivr.net/npm/@microsoft/microsoft-graph-client/lib/graph-js-sdk.js"></script>
+
+      <script src="config.js"></script>
       <script src="ui.js"></script>
       <script src="auth.js"></script>
+      <script src="graph.js"></script>
     </body>
     </html>
     ```
 
-    This adds [Bootstrap](https://getbootstrap.com/) and its supporting JavaScript, and [FontAwesome](https://fontawesome.com/). It also defines the basic layout of the app, including a navigation bar.
+    This defines the basic layout of the app, including a navigation bar. It also adds the following:
+
+    - [Bootstrap](https://getbootstrap.com/) and its supporting JavaScript
+    - [FontAwesome](https://fontawesome.com/)
+    - [Microsoft Authentication Library for JavaScript (MSAL.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js)
+    - [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript)
 
     > [!TIP]
     > The page includes a favicon, (`<link rel="shortcut icon" href="g-raph.png">`). You can remove this line, or you can download the `g-raph.png` file from [GitHub](https://github.com/microsoftgraph/g-raph).
