@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 const msalConfig = {
   auth: {
     clientId: 'YOUR_APP_ID_HERE',

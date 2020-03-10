@@ -28,80 +28,7 @@ In this section you'll create the basic UI layout for the application.
 
 1. Create a new file in the root of the project named `index.html` and add the following code.
 
-    ```html
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-      <title>JavaScript SPA Graph Tutorial</title>
-
-      <link rel="shortcut icon" href="g-raph.png">
-      <link rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-            crossorigin="anonymous">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
-            crossorigin="anonymous">
-      <link href="style.css" rel="stylesheet" type="text/css" />
-    </head>
-
-    <body>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container">
-          <a href="/" class="navbar-brand">Javascript SPA Graph Tutorial</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul id="authenticated-nav" class="navbar-nav mr-auto"></ul>
-            <ul class="navbar-nav justify-content-end">
-              <li class="nav-item">
-                <a class="nav-link" href="https://developer.microsoft.com/graph/docs/concepts/overview" target="_blank">
-                  <i class="fas fa-external-link-alt mr-1"></i>Docs
-                </a>
-              </li>
-              <li id="account-nav" class="nav-item"></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <main id="main-container" role="main" class="container">
-
-      </main>
-
-      <!-- Bootstrap/jQuery -->
-      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-              integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-              crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-              integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-              crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-              integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-              crossorigin="anonymous"></script>
-
-      <!-- Moment.js -->
-      <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
-
-      <!-- MSAL -->
-      <script src="//cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.min.js"></script>
-      <script src="https://alcdn.msftauth.net/lib/1.2.1/js/msal.js"
-              integrity="sha384-9TV1245fz+BaI+VvCjMYL0YDMElLBwNS84v3mY57pXNOt6xcUYch2QLImaTahcOP"
-              crossorigin="anonymous"></script>
-
-      <!-- Graph SDK -->
-      <script src="https://cdn.jsdelivr.net/npm/@microsoft/microsoft-graph-client/lib/graph-js-sdk.js"></script>
-
-      <script src="config.js"></script>
-      <script src="ui.js"></script>
-      <script src="auth.js"></script>
-      <script src="graph.js"></script>
-    </body>
-    </html>
-    ```
+    :::code language="html" source="../graph-tutorial/index.html":::
 
     This defines the basic layout of the app, including a navigation bar. It also adds the following:
 
@@ -116,11 +43,7 @@ In this section you'll create the basic UI layout for the application.
 
 1. Create a new file named `style.css` and add the following code.
 
-    ```css
-    body {
-      padding-top: 70px;
-    }
-    ```
+    :::code language="css" source="../graph-tutorial/style.css":::
 
 1. Create a new file named `auth.js` and add the following code.
 

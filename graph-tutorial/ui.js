@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 // Select DOM elements to work with
 const authenticatedNav = document.getElementById('authenticated-nav');
 const accountNav = document.getElementById('account-nav');

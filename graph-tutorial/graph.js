@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 // Create an options object with the same scopes from the login
 const options =
   new MicrosoftGraph.MSALAuthenticationProviderOptions([

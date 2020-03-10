@@ -8,19 +8,7 @@ In this section, you'll implement an authentication provider for the Microsoft G
 
 Create a new file in the root of the project named `graph.js` and add the following code.
 
-```javascript
-// Create an options object with the same scopes from the login
-const options =
-  new MicrosoftGraph.MSALAuthenticationProviderOptions([
-    'user.read',
-    'calendars.read'
-  ]);
-// Create an authentication provider for the implicit flow
-const authProvider =
-  new MicrosoftGraph.ImplicitMSALAuthenticationProvider(msalClient, options);
-// Initialize the Graph client
-const graphClient = MicrosoftGraph.Client.initWithMiddleware({authProvider});
-```
+:::code language="javascript" source="../graph-tutorial/graph.js" range="4-14":::
 
 ## Get calendar events from Outlook
 
@@ -28,24 +16,7 @@ In this section, you'll use the Microsoft Graph client library to get calendar e
 
 1. Add the following function to `graph.js`.
 
-    ```javascript
-    async function getEvents() {
-      try {
-        let events = await graphClient
-            .api('/me/events')
-            .select('subject,organizer,start,end')
-            .orderby('createdDateTime DESC')
-            .get();
-
-        updatePage(msalClient.getAccount(), Views.calendar, events);
-      } catch (error) {
-        updatePage(msalClient.getAccount(), Views.error, {
-          message: 'Error getting events',
-          debug: error
-        });
-      }
-    }
-    ```
+    :::code language="javascript" source="../graph-tutorial/graph.js" range="16-31":::
 
     Consider what this code is doing.
 

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 // Create the main MSAL instance
 // configuration parameters are located in config.js
 const msalClient = new Msal.UserAgentApplication(msalConfig);

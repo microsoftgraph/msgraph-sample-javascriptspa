@@ -4,28 +4,7 @@ In this exercise you will extend the application from the previous exercise to s
 
 1. Create a new file in the root directory named `config.js` and add the following code.
 
-    ```javascript
-    const msalConfig = {
-      auth: {
-        clientId: 'YOUR_APP_ID_HERE',
-        redirectUri: 'http://localhost:8080'
-      },
-      cache: {
-        cacheLocation: "sessionStorage",
-        storeAuthStateInCookie: false,
-        forceRefresh: false
-      }
-    };
-
-    const loginRequest = {
-      scopes: [
-        'openid',
-        'profile',
-        'user.read',
-        'calendars.read'
-      ]
-    }
-    ```
+    :::code language="javascript" source="../graph-tutorial/config.js.example" range="4-*":::
 
     Replace `YOUR_APP_ID_HERE` with the application ID from the Application Registration Portal.
 
@@ -34,16 +13,7 @@ In this exercise you will extend the application from the previous exercise to s
 
 1. Open `auth.js` and add the following code to the beginning of the file.
 
-    ```javascript
-    // Create the main MSAL instance
-    // configuration parameters are located in config.js
-    const msalClient = new Msal.UserAgentApplication(msalConfig);
-
-    if (msalClient.getAccount() && !msalClient.isCallback(window.location.hash)) {
-      // avoid duplicate code execution on page load in case of iframe and Popup window.
-      updatePage(msalClient.getAccount(), Views.home);
-    }
-    ```
+    :::code language="javascript" source="../graph-tutorial/auth.js" range="4-11":::
 
 ## Implement sign-in
 
@@ -51,32 +21,11 @@ In this section you'll implement the `signIn` and `signOut` functions.
 
 1. Replace the existing `signIn` function with the following.
 
-    ```javascript
-    async function signIn() {
-      // Login
-      try {
-        await msalClient.loginPopup(loginRequest);
-        console.log('id_token acquired at: ' + new Date().toString());
-        if (msalClient.getAccount()) {
-          updatePage(msalClient.getAccount(), Views.home);
-        }
-      } catch (error) {
-        console.log(error);
-        updatePage(null, Views.error, {
-          message: 'Error logging in',
-          debug: error
-        });
-      }
-    }
-    ```
+    :::code language="javascript" source="../graph-tutorial/auth.js" range="13-28":::
 
 1. Replace the existing `signOut` function with the following.
 
-    ```javascript
-    function signOut() {
-      msalClient.logout();
-    }
-    ```
+    :::code language="javascript" source="../graph-tutorial/auth.js" range="30-32":::
 
 Save your changes and refresh the page. After you sign in, you should end up back on the home page, but the UI should change to indicate that you are signed-in.
 
