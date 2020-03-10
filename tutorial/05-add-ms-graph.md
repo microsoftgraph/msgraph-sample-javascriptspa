@@ -75,47 +75,18 @@ In this section, you'll use the Microsoft Graph client library to get calendar e
 
 1. Update the `switch` statement in the `updatePage` function to call `showCalendar` when the view is `Views.calendar`.
 
-    :::code language="javascript" source="../graph-tutorial/ui.js" range="156-167" highlight="163-165":::
+    :::code language="javascript" source="../graph-tutorial/ui.js" range="197-208" highlight="204-206":::
 
 Save your changes and refresh the app. Sign in and click the **Calendar** link in the nav bar. If everything works, you should see a JSON dump of events on the user's calendar.
 
 ## Display the results
 
-Now you can update the `Calendar` component to display the events in a more user-friendly manner. Replace the existing `render` function in `./src/Calendar.js` with the following function.
+In this section you will update the `showCalendar` function to display the events in a more user-friendly manner.
 
-```JSX
-render() {
-  return (
-    <div>
-      <h1>Calendar</h1>
-      <Table>
-        <thead>
-          <tr>
-            <th scope="col">Organizer</th>
-            <th scope="col">Subject</th>
-            <th scope="col">Start</th>
-            <th scope="col">End</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.events.map(
-            function(event){
-              return(
-                <tr key={event.id}>
-                  <td>{event.organizer.emailAddress.name}</td>
-                  <td>{event.subject}</td>
-                  <td>{formatDateTime(event.start.dateTime)}</td>
-                  <td>{formatDateTime(event.end.dateTime)}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </Table>
-    </div>
-  );
-}
-```
+1. Replace the existing `showCalendar` function with the following.
 
-This loops through the collection of events and adds a table row for each one. Save the changes and restart the app. Click on the **Calendar** link and the app should now render a table of events.
+    :::code language="javascript" source="../graph-tutorial/ui.js" range="132-187":::
 
-![A screenshot of the table of events](./images/add-ms-graph-01.png)
+This loops through the collection of events and adds a table row for each one. Save the changes and refresh the app. Click on the **Calendar** link and the app should now render a table of events.
+
+![A screenshot of the table of events](./images/calendar-list.png)

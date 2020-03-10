@@ -83,6 +83,9 @@ In this section you'll create the basic UI layout for the application.
               integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
               crossorigin="anonymous"></script>
 
+      <!-- Moment.js -->
+      <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+
       <!-- MSAL -->
       <script src="//cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.min.js"></script>
       <script src="https://alcdn.msftauth.net/lib/1.2.1/js/msal.js"
@@ -104,6 +107,7 @@ In this section you'll create the basic UI layout for the application.
 
     - [Bootstrap](https://getbootstrap.com/) and its supporting JavaScript
     - [FontAwesome](https://fontawesome.com/)
+    - [Moment.js](https://momentjs.com/)
     - [Microsoft Authentication Library for JavaScript (MSAL.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js)
     - [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript)
 
