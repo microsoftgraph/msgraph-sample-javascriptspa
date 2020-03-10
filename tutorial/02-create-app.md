@@ -161,8 +161,8 @@ In this section you'll create the basic UI layout for the application.
         // Add Calendar link
         var calendarNav = createElement('li', 'nav-item');
 
-        var calendarLink = createElement('a',
-          view === Views.calendar ? 'nav-link active' : 'nav-link',
+        var calendarLink = createElement('button',
+          `btn btn-link nav-link${view === Views.calendar ? ' active' : '' }`,
           'Calendar');
         calendarLink.setAttribute('onclick', 'getEvents();');
         calendarNav.appendChild(calendarLink);
@@ -265,7 +265,7 @@ In this section you'll create the basic UI layout for the application.
       mainContainer.appendChild(alert);
     }
 
-    function updatePage(account, view, error) {
+    function updatePage(account, view, data) {
       if (!view || !account) {
         view = Views.home;
       }
@@ -275,7 +275,7 @@ In this section you'll create the basic UI layout for the application.
 
       switch (view) {
         case Views.error:
-          showError(error);
+          showError(data);
           break;
         case Views.home:
           showWelcomeMessage(account);

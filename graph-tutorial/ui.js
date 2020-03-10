@@ -24,8 +24,8 @@ function showAuthenticatedNav(account, view) {
     // Add Calendar link
     var calendarNav = createElement('li', 'nav-item');
 
-    var calendarLink = createElement('a',
-      view === Views.calendar ? 'nav-link active' : 'nav-link',
+    var calendarLink = createElement('button',
+      `btn btn-link nav-link${view === Views.calendar ? ' active' : '' }`,
       'Calendar');
     calendarLink.setAttribute('onclick', 'getEvents();');
     calendarNav.appendChild(calendarLink);
@@ -129,7 +129,23 @@ function showError(error) {
   mainContainer.appendChild(alert);
 }
 
-function updatePage(account, view, error) {
+function showCalendar(events) {
+  // TEMPORARY
+  // Render the results as JSON
+  var alert = createElement('div', 'alert alert-success');
+
+  var pre = createElement('pre', 'alert-pre border bg-light p-2');
+  alert.appendChild(pre);
+
+  var code = createElement('code', 'text-break',
+    JSON.stringify(events, null, 2));
+  pre.appendChild(code);
+
+  mainContainer.innerHTML = '';
+  mainContainer.appendChild(alert);
+}
+
+function updatePage(account, view, data) {
   if (!view || !account) {
     view = Views.home;
   }
@@ -139,12 +155,13 @@ function updatePage(account, view, error) {
 
   switch (view) {
     case Views.error:
-      showError(error);
+      showError(data);
       break;
     case Views.home:
       showWelcomeMessage(account);
       break;
     case Views.calendar:
+      showCalendar(data);
       break;
   }
 }
