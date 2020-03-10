@@ -16,7 +16,7 @@ In this section, you'll use the Microsoft Graph client library to get calendar e
 
 1. Add the following function to `graph.js`.
 
-    :::code language="javascript" source="../graph-tutorial/graph.js" id="getEvents:::
+    :::code language="javascript" source="../graph-tutorial/graph.js" id="getEvents":::
 
     Consider what this code is doing.
 

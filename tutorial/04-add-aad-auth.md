@@ -13,7 +13,7 @@ In this exercise you will extend the application from the previous exercise to s
 
 1. Open `auth.js` and add the following code to the beginning of the file.
 
-    :::code language="javascript" source="../graph-tutorial/auth.js" id="authInit:::
+    :::code language="javascript" source="../graph-tutorial/auth.js" id="authInit":::
 
 ## Implement sign-in
 
