@@ -75,7 +75,7 @@ In this section, you'll use the Microsoft Graph client library to get calendar e
 
 1. Update the `switch` statement in the `updatePage` function to call `showCalendar` when the view is `Views.calendar`.
 
-    :::code language="javascript" source="../graph-tutorial/ui.js" range="197-208" highlight="204-206":::
+    :::code language="javascript" source="../graph-tutorial/ui.js" range="197-208" highlight="8-10":::
 
 Save your changes and refresh the app. Sign in and click the **Calendar** link in the nav bar. If everything works, you should see a JSON dump of events on the user's calendar.
 
