@@ -4,7 +4,7 @@ In this exercise you will extend the application from the previous exercise to s
 
 1. Create a new file in the root directory named `config.js` and add the following code.
 
-    :::code language="javascript" source="../graph-tutorial/config.js.example" range="4-*":::
+    :::code language="javascript" source="../graph-tutorial/config.js.example" id="msalConfig":::
 
     Replace `YOUR_APP_ID_HERE` with the application ID from the Application Registration Portal.
 

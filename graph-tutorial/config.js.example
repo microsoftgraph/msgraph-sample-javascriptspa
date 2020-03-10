@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+// <msalConfig>
 const msalConfig = {
   auth: {
     clientId: 'YOUR_APP_ID_HERE',
@@ -21,3 +22,4 @@ const loginRequest = {
     'calendars.read'
   ]
 }
+// </msalConfig>
