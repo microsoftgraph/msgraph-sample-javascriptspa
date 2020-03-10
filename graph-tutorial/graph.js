@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+// <graphInit>
 // Create an options object with the same scopes from the login
 const options =
   new MicrosoftGraph.MSALAuthenticationProviderOptions([
@@ -12,7 +13,9 @@ const authProvider =
   new MicrosoftGraph.ImplicitMSALAuthenticationProvider(msalClient, options);
 // Initialize the Graph client
 const graphClient = MicrosoftGraph.Client.initWithMiddleware({authProvider});
+// </graphInit>
 
+// <getEvents>
 async function getEvents() {
   try {
     let events = await graphClient
@@ -29,3 +32,4 @@ async function getEvents() {
     });
   }
 }
+// </getEvents>

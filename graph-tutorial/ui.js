@@ -132,6 +132,7 @@ function showError(error) {
   mainContainer.appendChild(alert);
 }
 
+// <showCalendar>
 function showCalendar(events) {
   var div = document.createElement('div');
 
@@ -188,7 +189,9 @@ function showCalendar(events) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
 }
+// </showCalendar>
 
+// <updatePage>
 function updatePage(account, view, data) {
   if (!view || !account) {
     view = Views.home;
@@ -209,5 +212,6 @@ function updatePage(account, view, data) {
       break;
   }
 }
+// </updatePage>
 
 updatePage(null, Views.home);
