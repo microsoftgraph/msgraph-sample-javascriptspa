@@ -28,7 +28,7 @@ In this section you'll create the basic UI layout for the application.
 
 1. Create a new file in the root of the project named `index.html` and add the following code.
 
-    :::code language="html" source="../graph-tutorial/index.html":::
+    :::code language="html" source="../demo/graph-tutorial/index.html":::
 
     This defines the basic layout of the app, including a navigation bar. It also adds the following:
 
@@ -43,7 +43,7 @@ In this section you'll create the basic UI layout for the application.
 
 1. Create a new file named `style.css` and add the following code.
 
-    :::code language="css" source="../graph-tutorial/style.css":::
+    :::code language="css" source="../demo/graph-tutorial/style.css":::
 
 1. Create a new file named `auth.js` and add the following code.
 

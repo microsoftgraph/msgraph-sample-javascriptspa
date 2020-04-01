@@ -4,7 +4,7 @@ In this exercise you will extend the application from the previous exercise to s
 
 1. Create a new file in the root directory named `config.js` and add the following code.
 
-    :::code language="javascript" source="../graph-tutorial/config.js.example" id="msalConfig":::
+    :::code language="javascript" source="../demo/graph-tutorial/config.js.example" id="msalConfig":::
 
     Replace `YOUR_APP_ID_HERE` with the application ID from the Application Registration Portal.
 
@@ -13,7 +13,7 @@ In this exercise you will extend the application from the previous exercise to s
 
 1. Open `auth.js` and add the following code to the beginning of the file.
 
-    :::code language="javascript" source="../graph-tutorial/auth.js" id="authInit":::
+    :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="authInit":::
 
 ## Implement sign-in
 
@@ -21,11 +21,11 @@ In this section you'll implement the `signIn` and `signOut` functions.
 
 1. Replace the existing `signIn` function with the following.
 
-    :::code language="javascript" source="../graph-tutorial/auth.js" id="signIn":::
+    :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="signIn":::
 
 1. Replace the existing `signOut` function with the following.
 
-    :::code language="javascript" source="../graph-tutorial/auth.js" id="signOut":::
+    :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="signOut":::
 
 Save your changes and refresh the page. After you sign in, you should end up back on the home page, but the UI should change to indicate that you are signed-in.
 
