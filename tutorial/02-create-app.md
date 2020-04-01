@@ -215,6 +215,6 @@ In this section you'll create the basic UI layout for the application.
     updatePage(null, Views.home);
     ```
 
-Save all of your changes and refresh the page. Now, the app should look very different.
+1. Save all of your changes and refresh the page. Now, the app should look very different.
 
-![A screenshot of the redesigned home page](images/app-layout.png)
+    ![A screenshot of the redesigned home page](images/app-layout.png)

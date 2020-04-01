@@ -48,7 +48,7 @@ In this section, you'll use the Microsoft Graph client library to get calendar e
 
     :::code language="javascript" source="../demo/graph-tutorial/ui.js" id="updatePage" highlight="16-18":::
 
-Save your changes and refresh the app. Sign in and click the **Calendar** link in the nav bar. If everything works, you should see a JSON dump of events on the user's calendar.
+1. Save your changes and refresh the app. Sign in and click the **Calendar** link in the nav bar. If everything works, you should see a JSON dump of events on the user's calendar.
 
 ## Display the results
 
@@ -58,6 +58,8 @@ In this section you will update the `showCalendar` function to display the event
 
     :::code language="javascript" source="../demo/graph-tutorial/ui.js" id="showCalendar":::
 
-This loops through the collection of events and adds a table row for each one. Save the changes and refresh the app. Click on the **Calendar** link and the app should now render a table of events.
+    This loops through the collection of events and adds a table row for each one.
 
-![A screenshot of the table of events](./images/calendar-list.png)
+1. Save the changes and refresh the app. Click on the **Calendar** link and the app should now render a table of events.
+
+    ![A screenshot of the table of events](./images/calendar-list.png)

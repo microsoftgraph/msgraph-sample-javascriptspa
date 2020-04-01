@@ -27,13 +27,13 @@ In this section you'll implement the `signIn` and `signOut` functions.
 
     :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="signOut":::
 
-Save your changes and refresh the page. After you sign in, you should end up back on the home page, but the UI should change to indicate that you are signed-in.
+1. Save your changes and refresh the page. After you sign in, you should end up back on the home page, but the UI should change to indicate that you are signed-in.
 
-![A screenshot of the home page after signing in](./images/user-signed-in.png)
+    ![A screenshot of the home page after signing in](./images/user-signed-in.png)
 
-Click the user avatar in the top right corner to access the **Sign out** link. Clicking **Sign out** resets the session and returns you to the home page.
+1. Click the user avatar in the top right corner to access the **Sign out** link. Clicking **Sign out** resets the session and returns you to the home page.
 
-![A screenshot of the dropdown menu with the Sign out link](./images/sign-out-button.png)
+    ![A screenshot of the dropdown menu with the Sign out link](./images/sign-out-button.png)
 
 ## Storing and refreshing tokens
 
