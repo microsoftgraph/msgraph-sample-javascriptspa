@@ -35,7 +35,7 @@ In this section you'll create the basic UI layout for the application.
     - [Bootstrap](https://getbootstrap.com/) and its supporting JavaScript
     - [FontAwesome](https://fontawesome.com/)
     - [Moment.js](https://momentjs.com/)
-    - [Microsoft Authentication Library for JavaScript (MSAL.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js)
+    - [Microsoft Authentication Library for JavaScript (MSAL.js) 2.0](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser)
     - [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript)
 
     > [!TIP]
