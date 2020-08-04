@@ -6,7 +6,7 @@ In this exercise you will incorporate the Microsoft Graph into the application. 
 
 In this section, you'll use the Microsoft Graph client library to get calendar events for the user.
 
-1. Add the following function to `graph.js`.
+1. Add the following function to **graph.js**.
 
     :::code language="javascript" source="../demo/graph-tutorial/graph.js" id="getEventsSnippet":::
 
@@ -16,7 +16,7 @@ In this section, you'll use the Microsoft Graph client library to get calendar e
     - The `select` method limits the fields returned for each events to just those the view will actually use.
     - The `orderby` method sorts the results by the date and time they were created, with the most recent item being first.
 
-1. Open `ui.js` and add the following function.
+1. Open **ui.js** and add the following function.
 
     ```javascript
     function showCalendar(events) {

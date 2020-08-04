@@ -26,7 +26,7 @@ You should see an **Index of /** page. This confirms that the HTTP server is run
 
 In this section you'll create the basic UI layout for the application.
 
-1. Create a new file in the root of the project named `index.html` and add the following code.
+1. Create a new file in the root of the project named **index.html** and add the following code.
 
     :::code language="html" source="../demo/graph-tutorial/index.html" id="indexSnippet":::
 
@@ -39,13 +39,13 @@ In this section you'll create the basic UI layout for the application.
     - [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript)
 
     > [!TIP]
-    > The page includes a favicon, (`<link rel="shortcut icon" href="g-raph.png">`). You can remove this line, or you can download the `g-raph.png` file from [GitHub](https://github.com/microsoftgraph/g-raph).
+    > The page includes a favicon, (`<link rel="shortcut icon" href="g-raph.png">`). You can remove this line, or you can download the **g-raph.png** file from [GitHub](https://github.com/microsoftgraph/g-raph).
 
-1. Create a new file named `style.css` and add the following code.
+1. Create a new file named **style.css** and add the following code.
 
     :::code language="css" source="../demo/graph-tutorial/style.css":::
 
-1. Create a new file named `auth.js` and add the following code.
+1. Create a new file named **auth.js** and add the following code.
 
     ```javascript
     function signIn() {
@@ -59,7 +59,7 @@ In this section you'll create the basic UI layout for the application.
     }
     ```
 
-1. Create a new file named `ui.js` and add the following code.
+1. Create a new file named **ui.js** and add the following code.
 
     ```javascript
     // Select DOM elements to work with

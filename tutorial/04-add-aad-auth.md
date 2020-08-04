@@ -2,16 +2,16 @@
 
 In this exercise you will extend the application from the previous exercise to support authentication with Azure AD. This is required to obtain the necessary OAuth access token to call the Microsoft Graph. In this step you will integrate the [Microsoft Authentication Library](https://github.com/AzureAD/microsoft-authentication-library-for-js) library into the application.
 
-1. Create a new file in the root directory named `config.js` and add the following code.
+1. Create a new file in the root directory named **config.js** and add the following code.
 
     :::code language="javascript" source="../demo/graph-tutorial/config.js.example" id="msalConfigSnippet":::
 
     Replace `YOUR_APP_ID_HERE` with the application ID from the Application Registration Portal.
 
     > [!IMPORTANT]
-    > If you're using source control such as git, now would be a good time to exclude the `config.js` file from source control to avoid inadvertently leaking your app ID.
+    > If you're using source control such as git, now would be a good time to exclude the **config.js** file from source control to avoid inadvertently leaking your app ID.
 
-1. Open `auth.js` and add the following code to the beginning of the file.
+1. Open **auth.js** and add the following code to the beginning of the file.
 
     :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="authInitSnippet":::
 
@@ -63,7 +63,7 @@ In this section you'll improve the `signIn` function to use the access token to 
 
     :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="getTokenSnippet":::
 
-1. Create a new file in the root of the project named `graph.js` and add the following code.
+1. Create a new file in the root of the project named **graph.js** and add the following code.
 
     :::code language="javascript" source="../demo/graph-tutorial/graph.js" id="graphInitSnippet":::
 
