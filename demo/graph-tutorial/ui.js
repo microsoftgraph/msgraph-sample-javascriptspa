@@ -20,10 +20,10 @@ function createElement(type, className, text) {
   return element;
 }
 
-function showAuthenticatedNav(account, view) {
+function showAuthenticatedNav(user, view) {
   authenticatedNav.innerHTML = '';
 
-  if (account) {
+  if (user) {
     // Add Calendar link
     var calendarNav = createElement('li', 'nav-item');
 
@@ -37,11 +37,11 @@ function showAuthenticatedNav(account, view) {
   }
 }
 
-function showAccountNav(account, view) {
+function showAccountNav(user) {
 
   accountNav.innerHTML = '';
 
-  if (account) {
+  if (user) {
     // Show the "signed-in" nav
     accountNav.className = 'nav-item dropdown';
 
@@ -58,10 +58,10 @@ function showAccountNav(account, view) {
     var menu = createElement('div', 'dropdown-menu dropdown-menu-right');
     dropdown.appendChild(menu);
 
-    var userName = createElement('h5', 'dropdown-item-text mb-0', account.name);
+    var userName = createElement('h5', 'dropdown-item-text mb-0', user.displayName);
     menu.appendChild(userName);
 
-    var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', account.userName);
+    var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', user.mail || user.userPrincipalName);
     menu.appendChild(userEmail);
 
     var divider = createElement('div', 'dropdown-divider');
@@ -80,7 +80,7 @@ function showAccountNav(account, view) {
   }
 }
 
-function showWelcomeMessage(account) {
+function showWelcomeMessage(user) {
   // Create jumbotron
   var jumbotron = createElement('div', 'jumbotron');
 
@@ -92,9 +92,9 @@ function showWelcomeMessage(account) {
     ' a user\'s data from JavaScript.');
   jumbotron.appendChild(lead);
 
-  if (account) {
+  if (user) {
     // Welcome the user by name
-    var welcomeMessage = createElement('h4', null, `Welcome ${account.name}!`);
+    var welcomeMessage = createElement('h4', null, `Welcome ${user.displayName}!`);
     jumbotron.appendChild(welcomeMessage);
 
     var callToAction = createElement('p', null,
@@ -132,7 +132,7 @@ function showError(error) {
   mainContainer.appendChild(alert);
 }
 
-// <showCalendar>
+// <showCalendarSnippet>
 function showCalendar(events) {
   var div = document.createElement('div');
 
@@ -189,29 +189,31 @@ function showCalendar(events) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
 }
-// </showCalendar>
+// </showCalendarSnippet>
 
-// <updatePage>
-function updatePage(account, view, data) {
-  if (!view || !account) {
+// <updatePageSnippet>
+function updatePage(view, data) {
+  if (!view) {
     view = Views.home;
   }
 
-  showAccountNav(account);
-  showAuthenticatedNav(account, view);
+  const user = JSON.parse(sessionStorage.getItem('graphUser'));
+
+  showAccountNav(user);
+  showAuthenticatedNav(user, view);
 
   switch (view) {
     case Views.error:
       showError(data);
       break;
     case Views.home:
-      showWelcomeMessage(account);
+      showWelcomeMessage(user);
       break;
     case Views.calendar:
       showCalendar(data);
       break;
   }
 }
-// </updatePage>
+// </updatePageSnippet>
 
-updatePage(null, Views.home);
+updatePage(Views.home);

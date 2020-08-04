@@ -1,21 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-// <graphInit>
-// Create an options object with the same scopes from the login
-const options =
-  new MicrosoftGraph.MSALAuthenticationProviderOptions([
-    'user.read',
-    'calendars.read'
-  ]);
-// Create an authentication provider for the implicit flow
-const authProvider =
-  new MicrosoftGraph.ImplicitMSALAuthenticationProvider(msalClient, options);
+// <graphInitSnippet>
+// Create an authentication provider
+const authProvider = {
+  getAccessToken: async () => {
+    // Call getToken in auth.js
+    return await getToken();
+  }
+};
+
 // Initialize the Graph client
 const graphClient = MicrosoftGraph.Client.initWithMiddleware({authProvider});
-// </graphInit>
+// </graphInitSnippet>
 
-// <getEvents>
+// <getUserSnippet>
+async function getUser() {
+  return await graphClient
+    .api('/me')
+    // Only get the fields used by the app
+    .select('id,displayName,mail,userPrincipalName')
+    .get();
+}
+// <getUserSnippet>
+
+// <getEventsSnippet>
 async function getEvents() {
   try {
     let events = await graphClient
@@ -24,12 +33,12 @@ async function getEvents() {
         .orderby('createdDateTime DESC')
         .get();
 
-    updatePage(msalClient.getAccount(), Views.calendar, events);
+    updatePage(Views.calendar, events);
   } catch (error) {
-    updatePage(msalClient.getAccount(), Views.error, {
+    updatePage(Views.error, {
       message: 'Error getting events',
       debug: error
     });
   }
 }
-// </getEvents>
+// </getEventsSnippet>
