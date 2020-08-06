@@ -71,3 +71,77 @@ async function getEvents() {
   }
 }
 // </getEventsSnippet>
+
+// <createEventSnippet>
+async function createNewEvent() {
+  const user = JSON.parse(sessionStorage.getItem('graphUser'));
+
+  // Get the user's input
+  const subject = document.getElementById('ev-subject').value;
+  const attendees = document.getElementById('ev-attendees').value;
+  const start = document.getElementById('ev-start').value;
+  const end = document.getElementById('ev-end').value;
+  const body = document.getElementById('ev-body').value;
+
+  // Require at least subject, start, and end
+  if (!subject || !start || !end) {
+    updatePage(Views.error, {
+      message: 'Please provide a subject, start, and end.'
+    });
+    return;
+  }
+
+  // Build the JSON payload of the event
+  let newEvent = {
+    subject: subject,
+    start: {
+      dateTime: start,
+      timeZone: user.mailboxSettings.timeZone
+    },
+    end: {
+      dateTime: end,
+      timeZone: user.mailboxSettings.timeZone
+    }
+  };
+
+  if (attendees)
+  {
+    const attendeeArray = attendees.split(';');
+    newEvent.attendees = [];
+
+    for (const attendee of attendeeArray) {
+      if (attendee.length > 0) {
+        newEvent.attendees.push({
+          type: 'required',
+          emailAddress: {
+            address: attendee
+          }
+        });
+      }
+    }
+  }
+
+  if (body)
+  {
+    newEvent.body = {
+      contentType: 'text',
+      content: body
+    };
+  }
+
+  try {
+    // POST the JSON to the /me/events endpoint
+    await graphClient
+      .api('/me/events')
+      .post(newEvent);
+
+    // Return to the calendar view
+    getEvents();
+  } catch (error) {
+    updatePage(Views.error, {
+      message: 'Error creating event',
+      debug: error
+    });
+  }
+}
+// </createEventSnippet>
