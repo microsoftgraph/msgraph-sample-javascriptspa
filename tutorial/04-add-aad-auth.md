@@ -29,7 +29,7 @@ In this section you'll implement the `signIn` and `signOut` functions.
         const authResult = await msalClient.loginPopup(msalRequest);
         console.log('id_token acquired at: ' + new Date().toString());
         // Save the account username, needed for token acquisition
-        account = authResult.account.username;
+        sessionStorage.setItem('msalAccount', authResult.account.username);
         // TEMPORARY
         updatePage(Views.error, {
           message: 'Login successful',

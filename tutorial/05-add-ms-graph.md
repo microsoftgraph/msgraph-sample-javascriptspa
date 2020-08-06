@@ -6,15 +6,24 @@ In this exercise you will incorporate the Microsoft Graph into the application. 
 
 In this section, you'll use the Microsoft Graph client library to get calendar events for the user.
 
+1. Create a new file in the root of the project named **timezones.js** and add the following code.
+
+    :::code language="javascript" source="../demo/graph-tutorial/timezones.js" id="zoneMappingsSnippet":::
+
+    This code maps Windows time zone identifiers to IANA time zone identifiers for compatibility with moment.js.
+
 1. Add the following function to **graph.js**.
 
     :::code language="javascript" source="../demo/graph-tutorial/graph.js" id="getEventsSnippet":::
 
     Consider what this code is doing.
 
-    - The URL that will be called is `/me/events`.
+    - The URL that will be called is `/me/calendarview`.
+    - The `header` method adds a `Prefer` header specifying the user's preferred time zone.
+    - The `query` method adds the start and end times for the calendar view.
     - The `select` method limits the fields returned for each events to just those the view will actually use.
-    - The `orderby` method sorts the results by the date and time they were created, with the most recent item being first.
+    - The `orderby` method sorts the results by the start time, with the earliest event being first.
+    - The `top` method requests up to 50 events in the response.
 
 1. Open **ui.js** and add the following function.
 
@@ -52,6 +61,6 @@ In this section you will update the `showCalendar` function to display the event
 
     This loops through the collection of events and adds a table row for each one.
 
-1. Save the changes and refresh the app. Click on the **Calendar** link and the app should now render a table of events.
+1. Save the changes and refresh the app. Click on the **Calendar** link and the app should now render a table of events for the current week.
 
     ![A screenshot of the table of events](./images/calendar-list.png)

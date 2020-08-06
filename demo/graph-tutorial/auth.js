@@ -5,8 +5,6 @@
 // Create the main MSAL instance
 // configuration parameters are located in config.js
 const msalClient = new msal.PublicClientApplication(msalConfig);
-
-let account = null;
 // </authInitSnippet>
 
 // <signInSnippet>
@@ -17,7 +15,7 @@ async function signIn() {
     const authResult = await msalClient.loginPopup(msalRequest);
     console.log('id_token acquired at: ' + new Date().toString());
     // Save the account username, needed for token acquisition
-    account = authResult.account.username;
+    sessionStorage.setItem('msalAccount', authResult.account.username);
 
     // Get the user's profile from Graph
     user = await getUser();
@@ -44,6 +42,12 @@ function signOut() {
 
 // <getTokenSnippet>
 async function getToken() {
+  let account = sessionStorage.getItem('msalAccount');
+  if (!account){
+    throw new Error(
+      'User account missing from session. Please sign out and sign in again.');
+  }
+
   try {
     // First, attempt to get the token silently
     const silentRequest = {

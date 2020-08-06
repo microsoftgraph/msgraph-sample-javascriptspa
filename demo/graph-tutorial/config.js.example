@@ -12,6 +12,7 @@ const msalConfig = {
 const msalRequest = {
   scopes: [
     'user.read',
+    'mailboxsettings.read',
     'calendars.read'
   ]
 }

@@ -166,7 +166,7 @@ function showCalendar(events) {
   var tbody = document.createElement('tbody');
   table.appendChild(tbody);
 
-  for (const event of events.value) {
+  for (const event of events) {
     var eventrow = document.createElement('tr');
     eventrow.setAttribute('key', event.id);
     tbody.appendChild(eventrow);
@@ -177,12 +177,15 @@ function showCalendar(events) {
     var subjectcell = createElement('td', null, event.subject);
     eventrow.appendChild(subjectcell);
 
+    // Use moment.utc() here because times are already in the user's
+    // preferred timezone, and we don't want moment to try to change them to the
+    // browser's timezone
     var startcell = createElement('td', null,
-      moment.utc(event.start.dateTime).local().format('M/D/YY h:mm A'));
+      moment.utc(event.start.dateTime).format('M/D/YY h:mm A'));
     eventrow.appendChild(startcell);
 
     var endcell = createElement('td', null,
-      moment.utc(event.end.dateTime).local().format('M/D/YY h:mm A'));
+      moment.utc(event.end.dateTime).format('M/D/YY h:mm A'));
     eventrow.appendChild(endcell);
   }
 
