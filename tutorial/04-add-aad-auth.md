@@ -71,7 +71,7 @@ In this section you'll improve the `signIn` function to use the access token to 
 
 1. Add the following function in **graph.js** to get the user's profile.
 
-    :::code language="javascript" source="../demo/graph-tutorial/graph.js" id="graphInitSnippet":::
+    :::code language="javascript" source="../demo/graph-tutorial/graph.js" id="getUserSnippet":::
 
 1. Replace the existing `signIn` function with the following.
 
