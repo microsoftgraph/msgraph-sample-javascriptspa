@@ -22,7 +22,7 @@ async function getUser() {
     .select('id,displayName,mail,userPrincipalName,mailboxSettings')
     .get();
 }
-// <getUserSnippet>
+// </getUserSnippet>
 
 // <getEventsSnippet>
 async function getEvents() {
