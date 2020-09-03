@@ -26,7 +26,7 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
     - Set **Name** to `JavaScript Graph Tutorial`.
     - Set **Supported account types** to **Accounts in any organizational directory and personal Microsoft accounts**.
-    - Under **Redirect URI**, set the first drop-down to `Web` and set the value to `http://localhost:8080`.
+    - Under **Redirect URI**, set the first drop-down to `Single-page application (SPA)` and set the value to `http://localhost:8080`.
 
     ![A screenshot of the Register an application page](/tutorial/images/aad-register-an-app.png)
 
