@@ -1,25 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-// <msalConfig>
+// <msalConfigSnippet>
 const msalConfig = {
   auth: {
     clientId: 'YOUR_APP_ID_HERE',
     redirectUri: 'http://localhost:8080'
-  },
-  cache: {
-    cacheLocation: "sessionStorage",
-    storeAuthStateInCookie: false,
-    forceRefresh: false
   }
 };
 
-const loginRequest = {
+const msalRequest = {
   scopes: [
-    'openid',
-    'profile',
     'user.read',
-    'calendars.read'
+    'mailboxsettings.read',
+    'calendars.readwrite'
   ]
 }
-// </msalConfig>
+// </msalConfigSnippet>

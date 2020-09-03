@@ -9,25 +9,25 @@ const mainContainer = document.getElementById('main-container');
 const Views = { error: 1, home: 2, calendar: 3 };
 
 function createElement(type, className, text) {
-  var element = document.createElement(type);
+  let element = document.createElement(type);
   element.className = className;
 
   if (text) {
-    var textNode = document.createTextNode(text);
+    let textNode = document.createTextNode(text);
     element.appendChild(textNode);
   }
 
   return element;
 }
 
-function showAuthenticatedNav(account, view) {
+function showAuthenticatedNav(user, view) {
   authenticatedNav.innerHTML = '';
 
-  if (account) {
+  if (user) {
     // Add Calendar link
-    var calendarNav = createElement('li', 'nav-item');
+    let calendarNav = createElement('li', 'nav-item');
 
-    var calendarLink = createElement('button',
+    let calendarLink = createElement('button',
       `btn btn-link nav-link${view === Views.calendar ? ' active' : '' }`,
       'Calendar');
     calendarLink.setAttribute('onclick', 'getEvents();');
@@ -37,72 +37,72 @@ function showAuthenticatedNav(account, view) {
   }
 }
 
-function showAccountNav(account, view) {
+function showAccountNav(user) {
 
   accountNav.innerHTML = '';
 
-  if (account) {
+  if (user) {
     // Show the "signed-in" nav
     accountNav.className = 'nav-item dropdown';
 
-    var dropdown = createElement('a', 'nav-link dropdown-toggle');
+    let dropdown = createElement('a', 'nav-link dropdown-toggle');
     dropdown.setAttribute('data-toggle', 'dropdown');
     dropdown.setAttribute('role', 'button');
     accountNav.appendChild(dropdown);
 
-    var userIcon = createElement('i',
+    let userIcon = createElement('i',
       'far fa-user-circle fa-lg rounded-circle align-self-center');
     userIcon.style.width = '32px';
     dropdown.appendChild(userIcon);
 
-    var menu = createElement('div', 'dropdown-menu dropdown-menu-right');
+    let menu = createElement('div', 'dropdown-menu dropdown-menu-right');
     dropdown.appendChild(menu);
 
-    var userName = createElement('h5', 'dropdown-item-text mb-0', account.name);
+    let userName = createElement('h5', 'dropdown-item-text mb-0', user.displayName);
     menu.appendChild(userName);
 
-    var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', account.userName);
+    let userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', user.mail || user.userPrincipalName);
     menu.appendChild(userEmail);
 
-    var divider = createElement('div', 'dropdown-divider');
+    let divider = createElement('div', 'dropdown-divider');
     menu.appendChild(divider);
 
-    var signOutButton = createElement('button', 'dropdown-item', 'Sign out');
+    let signOutButton = createElement('button', 'dropdown-item', 'Sign out');
     signOutButton.setAttribute('onclick', 'signOut();');
     menu.appendChild(signOutButton);
   } else {
     // Show a "sign in" button
     accountNav.className = 'nav-item';
 
-    var signInButton = createElement('button', 'btn btn-link nav-link', 'Sign in');
+    let signInButton = createElement('button', 'btn btn-link nav-link', 'Sign in');
     signInButton.setAttribute('onclick', 'signIn();');
     accountNav.appendChild(signInButton);
   }
 }
 
-function showWelcomeMessage(account) {
+function showWelcomeMessage(user) {
   // Create jumbotron
-  var jumbotron = createElement('div', 'jumbotron');
+  let jumbotron = createElement('div', 'jumbotron');
 
-  var heading = createElement('h1', null, 'JavaScript SPA Graph Tutorial');
+  let heading = createElement('h1', null, 'JavaScript SPA Graph Tutorial');
   jumbotron.appendChild(heading);
 
-  var lead = createElement('p', 'lead',
+  let lead = createElement('p', 'lead',
     'This sample app shows how to use the Microsoft Graph API to access' +
     ' a user\'s data from JavaScript.');
   jumbotron.appendChild(lead);
 
-  if (account) {
+  if (user) {
     // Welcome the user by name
-    var welcomeMessage = createElement('h4', null, `Welcome ${account.name}!`);
+    let welcomeMessage = createElement('h4', null, `Welcome ${user.displayName}!`);
     jumbotron.appendChild(welcomeMessage);
 
-    var callToAction = createElement('p', null,
+    let callToAction = createElement('p', null,
       'Use the navigation bar at the top of the page to get started.');
     jumbotron.appendChild(callToAction);
   } else {
     // Show a sign in button in the jumbotron
-    var signInButton = createElement('button', 'btn btn-primary btn-large',
+    let signInButton = createElement('button', 'btn btn-primary btn-large',
       'Click here to sign in');
     signInButton.setAttribute('onclick', 'signIn();')
     jumbotron.appendChild(signInButton);
@@ -113,17 +113,17 @@ function showWelcomeMessage(account) {
 }
 
 function showError(error) {
-  var alert = createElement('div', 'alert alert-danger');
+  let alert = createElement('div', 'alert alert-danger');
 
-  var message = createElement('p', 'mb-3', error.message);
+  let message = createElement('p', 'mb-3', error.message);
   alert.appendChild(message);
 
   if (error.debug)
   {
-    var pre = createElement('pre', 'alert-pre border bg-light p-2');
+    let pre = createElement('pre', 'alert-pre border bg-light p-2');
     alert.appendChild(pre);
 
-    var code = createElement('code', 'text-break text-wrap',
+    let code = createElement('code', 'text-break text-wrap',
       JSON.stringify(error.debug, null, 2));
     pre.appendChild(code);
   }
@@ -132,86 +132,173 @@ function showError(error) {
   mainContainer.appendChild(alert);
 }
 
-// <showCalendar>
+// <showCalendarSnippet>
 function showCalendar(events) {
-  var div = document.createElement('div');
+  let div = document.createElement('div');
 
-  div.appendChild(createElement('h1', null, 'Calendar'));
+  div.appendChild(createElement('h1', 'mb-3', 'Calendar'));
 
-  var table = createElement('table', 'table');
+  let newEventButton = createElement('button', 'btn btn-light btn-sm mb-3', 'New event');
+  newEventButton.setAttribute('onclick', 'showNewEventForm();');
+  div.appendChild(newEventButton);
+
+  let table = createElement('table', 'table');
   div.appendChild(table);
 
-  var thead = document.createElement('thead');
+  let thead = document.createElement('thead');
   table.appendChild(thead);
 
-  var headerrow = document.createElement('tr');
+  let headerrow = document.createElement('tr');
   thead.appendChild(headerrow);
 
-  var organizer = createElement('th', null, 'Organizer');
+  let organizer = createElement('th', null, 'Organizer');
   organizer.setAttribute('scope', 'col');
   headerrow.appendChild(organizer);
 
-  var subject = createElement('th', null, 'Subject');
+  let subject = createElement('th', null, 'Subject');
   subject.setAttribute('scope', 'col');
   headerrow.appendChild(subject);
 
-  var start = createElement('th', null, 'Start');
+  let start = createElement('th', null, 'Start');
   start.setAttribute('scope', 'col');
   headerrow.appendChild(start);
 
-  var end = createElement('th', null, 'End');
+  let end = createElement('th', null, 'End');
   end.setAttribute('scope', 'col');
   headerrow.appendChild(end);
 
-  var tbody = document.createElement('tbody');
+  let tbody = document.createElement('tbody');
   table.appendChild(tbody);
 
-  for (const event of events.value) {
-    var eventrow = document.createElement('tr');
+  for (const event of events) {
+    let eventrow = document.createElement('tr');
     eventrow.setAttribute('key', event.id);
     tbody.appendChild(eventrow);
 
-    var organizercell = createElement('td', null, event.organizer.emailAddress.name);
+    let organizercell = createElement('td', null, event.organizer.emailAddress.name);
     eventrow.appendChild(organizercell);
 
-    var subjectcell = createElement('td', null, event.subject);
+    let subjectcell = createElement('td', null, event.subject);
     eventrow.appendChild(subjectcell);
 
-    var startcell = createElement('td', null,
-      moment.utc(event.start.dateTime).local().format('M/D/YY h:mm A'));
+    // Use moment.utc() here because times are already in the user's
+    // preferred timezone, and we don't want moment to try to change them to the
+    // browser's timezone
+    let startcell = createElement('td', null,
+      moment.utc(event.start.dateTime).format('M/D/YY h:mm A'));
     eventrow.appendChild(startcell);
 
-    var endcell = createElement('td', null,
-      moment.utc(event.end.dateTime).local().format('M/D/YY h:mm A'));
+    let endcell = createElement('td', null,
+      moment.utc(event.end.dateTime).format('M/D/YY h:mm A'));
     eventrow.appendChild(endcell);
   }
 
   mainContainer.innerHTML = '';
   mainContainer.appendChild(div);
 }
-// </showCalendar>
+// </showCalendarSnippet>
 
-// <updatePage>
-function updatePage(account, view, data) {
-  if (!view || !account) {
+// <showNewEventFormSnippet>
+function showNewEventForm() {
+  let form = document.createElement('form');
+
+  let subjectGroup = createElement('div', 'form-group');
+  form.appendChild(subjectGroup);
+
+  subjectGroup.appendChild(createElement('label', '', 'Subject'));
+
+  let subjectInput = createElement('input', 'form-control');
+  subjectInput.setAttribute('id', 'ev-subject');
+  subjectInput.setAttribute('type', 'text');
+  subjectGroup.appendChild(subjectInput);
+
+  let attendeesGroup = createElement('div', 'form-group');
+  form.appendChild(attendeesGroup);
+
+  attendeesGroup.appendChild(createElement('label', '', 'Attendees'));
+
+  let attendeesInput = createElement('input', 'form-control');
+  attendeesInput.setAttribute('id', 'ev-attendees');
+  attendeesInput.setAttribute('type', 'text');
+  attendeesGroup.appendChild(attendeesInput);
+
+  let timeRow = createElement('div', 'form-row');
+  form.appendChild(timeRow);
+
+  let leftCol = createElement('div', 'col');
+  timeRow.appendChild(leftCol);
+
+  let startGroup = createElement('div', 'form-group');
+  leftCol.appendChild(startGroup);
+
+  startGroup.appendChild(createElement('label', '', 'Start'));
+
+  let startInput = createElement('input', 'form-control');
+  startInput.setAttribute('id', 'ev-start');
+  startInput.setAttribute('type', 'datetime-local');
+  startGroup.appendChild(startInput);
+
+  let rightCol = createElement('div', 'col');
+  timeRow.appendChild(rightCol);
+
+  let endGroup = createElement('div', 'form-group');
+  rightCol.appendChild(endGroup);
+
+  endGroup.appendChild(createElement('label', '', 'End'));
+
+  let endInput = createElement('input', 'form-control');
+  endInput.setAttribute('id', 'ev-end');
+  endInput.setAttribute('type', 'datetime-local');
+  endGroup.appendChild(endInput);
+
+  let bodyGroup = createElement('div', 'form-group');
+  form.appendChild(bodyGroup);
+
+  bodyGroup.appendChild(createElement('label', '', 'Body'));
+
+  let bodyInput = createElement('textarea', 'form-control');
+  bodyInput.setAttribute('id', 'ev-body');
+  bodyInput.setAttribute('rows', '3');
+  bodyGroup.appendChild(bodyInput);
+
+  let createButton = createElement('button', 'btn btn-primary mr-2', 'Create');
+  createButton.setAttribute('type', 'button');
+  createButton.setAttribute('onclick', 'createNewEvent();');
+  form.appendChild(createButton);
+
+  let cancelButton = createElement('button', 'btn btn-secondary', 'Cancel');
+  cancelButton.setAttribute('type', 'button');
+  cancelButton.setAttribute('onclick', 'getEvents();');
+  form.appendChild(cancelButton);
+
+  mainContainer.innerHTML = '';
+  mainContainer.appendChild(form);
+}
+// </showNewEventFormSnippet>
+
+// <updatePageSnippet>
+function updatePage(view, data) {
+  if (!view) {
     view = Views.home;
   }
 
-  showAccountNav(account);
-  showAuthenticatedNav(account, view);
+  const user = JSON.parse(sessionStorage.getItem('graphUser'));
+
+  showAccountNav(user);
+  showAuthenticatedNav(user, view);
 
   switch (view) {
     case Views.error:
       showError(data);
       break;
     case Views.home:
-      showWelcomeMessage(account);
+      showWelcomeMessage(user);
       break;
     case Views.calendar:
       showCalendar(data);
       break;
   }
 }
-// </updatePage>
+// </updatePageSnippet>
 
-updatePage(null, Views.home);
+updatePage(Views.home);

@@ -26,26 +26,26 @@ You should see an **Index of /** page. This confirms that the HTTP server is run
 
 In this section you'll create the basic UI layout for the application.
 
-1. Create a new file in the root of the project named `index.html` and add the following code.
+1. Create a new file in the root of the project named **index.html** and add the following code.
 
-    :::code language="html" source="../demo/graph-tutorial/index.html":::
+    :::code language="html" source="../demo/graph-tutorial/index.html" id="indexSnippet":::
 
     This defines the basic layout of the app, including a navigation bar. It also adds the following:
 
     - [Bootstrap](https://getbootstrap.com/) and its supporting JavaScript
     - [FontAwesome](https://fontawesome.com/)
     - [Moment.js](https://momentjs.com/)
-    - [Microsoft Authentication Library for JavaScript (MSAL.js)](https://github.com/AzureAD/microsoft-authentication-library-for-js)
+    - [Microsoft Authentication Library for JavaScript (MSAL.js) 2.0](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser)
     - [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript)
 
     > [!TIP]
-    > The page includes a favicon, (`<link rel="shortcut icon" href="g-raph.png">`). You can remove this line, or you can download the `g-raph.png` file from [GitHub](https://github.com/microsoftgraph/g-raph).
+    > The page includes a favicon, (`<link rel="shortcut icon" href="g-raph.png">`). You can remove this line, or you can download the **g-raph.png** file from [GitHub](https://github.com/microsoftgraph/g-raph).
 
-1. Create a new file named `style.css` and add the following code.
+1. Create a new file named **style.css** and add the following code.
 
     :::code language="css" source="../demo/graph-tutorial/style.css":::
 
-1. Create a new file named `auth.js` and add the following code.
+1. Create a new file named **auth.js** and add the following code.
 
     ```javascript
     function signIn() {
@@ -59,7 +59,7 @@ In this section you'll create the basic UI layout for the application.
     }
     ```
 
-1. Create a new file named `ui.js` and add the following code.
+1. Create a new file named **ui.js** and add the following code.
 
     ```javascript
     // Select DOM elements to work with
@@ -81,10 +81,10 @@ In this section you'll create the basic UI layout for the application.
       return element;
     }
 
-    function showAuthenticatedNav(account, view) {
+    function showAuthenticatedNav(user, view) {
       authenticatedNav.innerHTML = '';
 
-      if (account) {
+      if (user) {
         // Add Calendar link
         var calendarNav = createElement('li', 'nav-item');
 
@@ -98,10 +98,10 @@ In this section you'll create the basic UI layout for the application.
       }
     }
 
-    function showAccountNav(account) {
+    function showAccountNav(user) {
       accountNav.innerHTML = '';
 
-      if (account) {
+      if (user) {
         // Show the "signed-in" nav
         accountNav.className = 'nav-item dropdown';
 
@@ -118,10 +118,10 @@ In this section you'll create the basic UI layout for the application.
         var menu = createElement('div', 'dropdown-menu dropdown-menu-right');
         dropdown.appendChild(menu);
 
-        var userName = createElement('h5', 'dropdown-item-text mb-0', account.name);
+        var userName = createElement('h5', 'dropdown-item-text mb-0', user.displayName);
         menu.appendChild(userName);
 
-        var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', account.userName);
+        var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', user.mail || user.userPrincipalName);
         menu.appendChild(userEmail);
 
         var divider = createElement('div', 'dropdown-divider');
@@ -140,7 +140,7 @@ In this section you'll create the basic UI layout for the application.
       }
     }
 
-    function showWelcomeMessage(account) {
+    function showWelcomeMessage(user) {
       // Create jumbotron
       var jumbotron = createElement('div', 'jumbotron');
 
@@ -154,7 +154,7 @@ In this section you'll create the basic UI layout for the application.
 
       if (account) {
         // Welcome the user by name
-        var welcomeMessage = createElement('h4', null, `Welcome ${account.name}!`);
+        var welcomeMessage = createElement('h4', null, `Welcome ${user.displayName}!`);
         jumbotron.appendChild(welcomeMessage);
 
         var callToAction = createElement('p', null,
@@ -192,27 +192,29 @@ In this section you'll create the basic UI layout for the application.
       mainContainer.appendChild(alert);
     }
 
-    function updatePage(account, view, data) {
-      if (!view || !account) {
+    function updatePage(view, data) {
+      if (!view) {
         view = Views.home;
       }
 
-      showAccountNav(account);
-      showAuthenticatedNav(account, view);
+      const user = JSON.parse(sessionStorage.getItem('graphUser'));
+
+      showAccountNav(user);
+      showAuthenticatedNav(user, view);
 
       switch (view) {
         case Views.error:
           showError(data);
           break;
         case Views.home:
-          showWelcomeMessage(account);
+          showWelcomeMessage(user);
           break;
         case Views.calendar:
           break;
       }
     }
 
-    updatePage(null, Views.home);
+    updatePage(Views.home);
     ```
 
 1. Save all of your changes and refresh the page. Now, the app should look very different.
