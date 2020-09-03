@@ -40,7 +40,7 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
 ## Configure the sample
 
-1. Rename the **./graph-tutorial/config.js.example** file to **./graph-tutorial/config.js**.
+1. Rename the **./graph-tutorial/config.example.js** file to **./graph-tutorial/config.js**.
 1. Edit the **./graph-tutorial/config.js** file and make the following changes.
     1. Replace `YOUR_APP_ID_HERE` with the **Application Id** you got from the App Registration Portal.
 
