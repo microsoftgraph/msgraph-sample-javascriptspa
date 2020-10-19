@@ -152,7 +152,7 @@ In this section you'll create the basic UI layout for the application.
         ' a user\'s data from JavaScript.');
       jumbotron.appendChild(lead);
 
-      if (account) {
+      if (user) {
         // Welcome the user by name
         var welcomeMessage = createElement('h4', null, `Welcome ${user.displayName}!`);
         jumbotron.appendChild(welcomeMessage);
