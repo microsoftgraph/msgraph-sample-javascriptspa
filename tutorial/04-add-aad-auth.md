@@ -47,8 +47,6 @@ In this section you'll implement the `signIn` and `signOut` functions.
 
     This temporary code will display the access token after a successful login.
 
-    :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="signInSnippet":::
-
 1. Replace the existing `signOut` function with the following.
 
     :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="signOutSnippet":::
