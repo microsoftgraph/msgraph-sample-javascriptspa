@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+/* spell-checker: disable */
 
 // <zoneMappingsSnippet>
 // Basic lookup for mapping Windows time zone identifiers to
