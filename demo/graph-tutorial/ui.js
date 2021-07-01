@@ -46,17 +46,18 @@ function showAccountNav(user) {
     accountNav.className = 'nav-item dropdown';
 
     let dropdown = createElement('a', 'nav-link dropdown-toggle');
-    dropdown.setAttribute('data-toggle', 'dropdown');
+    dropdown.setAttribute('data-bs-toggle', 'dropdown');
     dropdown.setAttribute('role', 'button');
     accountNav.appendChild(dropdown);
 
-    let userIcon = createElement('i',
-      'far fa-user-circle fa-lg rounded-circle align-self-center');
+    let userIcon = createElement('img', 'rounded-circle align-self-center me-2');
     userIcon.style.width = '32px';
+    userIcon.src = 'g-raph.png';
+    userIcon.alt = 'user';
     dropdown.appendChild(userIcon);
 
-    let menu = createElement('div', 'dropdown-menu dropdown-menu-right');
-    dropdown.appendChild(menu);
+    let menu = createElement('div', 'dropdown-menu dropdown-menu-end');
+    accountNav.appendChild(menu);
 
     let userName = createElement('h5', 'dropdown-item-text mb-0', user.displayName);
     menu.appendChild(userName);
@@ -64,7 +65,7 @@ function showAccountNav(user) {
     let userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', user.mail || user.userPrincipalName);
     menu.appendChild(userEmail);
 
-    let divider = createElement('div', 'dropdown-divider');
+    let divider = createElement('hr', 'dropdown-divider');
     menu.appendChild(divider);
 
     let signOutButton = createElement('button', 'dropdown-item', 'Sign out');
@@ -82,30 +83,33 @@ function showAccountNav(user) {
 
 function showWelcomeMessage(user) {
   // Create jumbotron
-  let jumbotron = createElement('div', 'jumbotron');
+  let jumbotron = createElement('div', 'p-5 mb-4 bg-light rounded-3');
+
+  let container = createElement('div', 'container-fluid py-5');
+  jumbotron.appendChild(container);
 
   let heading = createElement('h1', null, 'JavaScript SPA Graph Tutorial');
-  jumbotron.appendChild(heading);
+  container.appendChild(heading);
 
   let lead = createElement('p', 'lead',
     'This sample app shows how to use the Microsoft Graph API to access' +
     ' a user\'s data from JavaScript.');
-  jumbotron.appendChild(lead);
+    container.appendChild(lead);
 
   if (user) {
     // Welcome the user by name
     let welcomeMessage = createElement('h4', null, `Welcome ${user.displayName}!`);
-    jumbotron.appendChild(welcomeMessage);
+    container.appendChild(welcomeMessage);
 
     let callToAction = createElement('p', null,
       'Use the navigation bar at the top of the page to get started.');
-    jumbotron.appendChild(callToAction);
+    container.appendChild(callToAction);
   } else {
     // Show a sign in button in the jumbotron
     let signInButton = createElement('button', 'btn btn-primary btn-large',
       'Click here to sign in');
     signInButton.setAttribute('onclick', 'signIn();')
-    jumbotron.appendChild(signInButton);
+    container.appendChild(signInButton);
   }
 
   mainContainer.innerHTML = '';
@@ -202,7 +206,7 @@ function showCalendar(events) {
 function showNewEventForm() {
   let form = document.createElement('form');
 
-  let subjectGroup = createElement('div', 'form-group');
+  let subjectGroup = createElement('div', 'form-group mb-2');
   form.appendChild(subjectGroup);
 
   subjectGroup.appendChild(createElement('label', '', 'Subject'));
@@ -212,7 +216,7 @@ function showNewEventForm() {
   subjectInput.setAttribute('type', 'text');
   subjectGroup.appendChild(subjectInput);
 
-  let attendeesGroup = createElement('div', 'form-group');
+  let attendeesGroup = createElement('div', 'form-group mb-2');
   form.appendChild(attendeesGroup);
 
   attendeesGroup.appendChild(createElement('label', '', 'Attendees'));
@@ -222,7 +226,7 @@ function showNewEventForm() {
   attendeesInput.setAttribute('type', 'text');
   attendeesGroup.appendChild(attendeesInput);
 
-  let timeRow = createElement('div', 'form-row');
+  let timeRow = createElement('div', 'row mb-2');
   form.appendChild(timeRow);
 
   let leftCol = createElement('div', 'col');
@@ -251,7 +255,7 @@ function showNewEventForm() {
   endInput.setAttribute('type', 'datetime-local');
   endGroup.appendChild(endInput);
 
-  let bodyGroup = createElement('div', 'form-group');
+  let bodyGroup = createElement('div', 'form-group mb-2');
   form.appendChild(bodyGroup);
 
   bodyGroup.appendChild(createElement('label', '', 'Body'));
@@ -261,7 +265,7 @@ function showNewEventForm() {
   bodyInput.setAttribute('rows', '3');
   bodyGroup.appendChild(bodyInput);
 
-  let createButton = createElement('button', 'btn btn-primary mr-2', 'Create');
+  let createButton = createElement('button', 'btn btn-primary me-2', 'Create');
   createButton.setAttribute('type', 'button');
   createButton.setAttribute('onclick', 'createNewEvent();');
   form.appendChild(createButton);

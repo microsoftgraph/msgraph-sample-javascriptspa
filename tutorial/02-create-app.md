@@ -32,11 +32,10 @@ In this section you'll create the basic UI layout for the application.
 
     This defines the basic layout of the app, including a navigation bar. It also adds the following:
 
-    - [Bootstrap](https://getbootstrap.com/) and its supporting JavaScript
-    - [FontAwesome](https://fontawesome.com/)
-    - [Moment.js](https://momentjs.com/)
-    - [Microsoft Authentication Library for JavaScript (MSAL.js) 2.0](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser)
-    - [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript)
+    - [Bootstrap](https://getbootstrap.com/) for layout and styling
+    - [Moment.js](https://momentjs.com/) for working with dates
+    - [Microsoft Authentication Library for JavaScript (MSAL.js) 2.0](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) for authentication
+    - [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for making calls to Microsoft Graph
 
     > [!TIP]
     > The page includes a favicon, (`<link rel="shortcut icon" href="g-raph.png">`). You can remove this line, or you can download the **g-raph.png** file from [GitHub](https://github.com/microsoftgraph/g-raph).
@@ -106,17 +105,18 @@ In this section you'll create the basic UI layout for the application.
         accountNav.className = 'nav-item dropdown';
 
         var dropdown = createElement('a', 'nav-link dropdown-toggle');
-        dropdown.setAttribute('data-toggle', 'dropdown');
+        dropdown.setAttribute('data-bs-toggle', 'dropdown');
         dropdown.setAttribute('role', 'button');
         accountNav.appendChild(dropdown);
 
-        var userIcon = createElement('i',
-          'far fa-user-circle fa-lg rounded-circle align-self-center');
+        let userIcon = createElement('img', 'rounded-circle align-self-center me-2');
         userIcon.style.width = '32px';
+        userIcon.src = 'g-raph.png';
+        userIcon.alt = 'user';
         dropdown.appendChild(userIcon);
 
-        var menu = createElement('div', 'dropdown-menu dropdown-menu-right');
-        dropdown.appendChild(menu);
+        var menu = createElement('div', 'dropdown-menu dropdown-menu-end');
+        accountNav.appendChild(menu);
 
         var userName = createElement('h5', 'dropdown-item-text mb-0', user.displayName);
         menu.appendChild(userName);
@@ -124,7 +124,7 @@ In this section you'll create the basic UI layout for the application.
         var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', user.mail || user.userPrincipalName);
         menu.appendChild(userEmail);
 
-        var divider = createElement('div', 'dropdown-divider');
+        var divider = createElement('hr', 'dropdown-divider');
         menu.appendChild(divider);
 
         var signOutButton = createElement('button', 'dropdown-item', 'Sign out');
@@ -142,30 +142,33 @@ In this section you'll create the basic UI layout for the application.
 
     function showWelcomeMessage(user) {
       // Create jumbotron
-      var jumbotron = createElement('div', 'jumbotron');
+      let jumbotron = createElement('div', 'p-5 mb-4 bg-light rounded-3');
 
-      var heading = createElement('h1', null, 'JavaScript SPA Graph Tutorial');
-      jumbotron.appendChild(heading);
+      let container = createElement('div', 'container-fluid py-5');
+      jumbotron.appendChild(container);
 
-      var lead = createElement('p', 'lead',
+      let heading = createElement('h1', null, 'JavaScript SPA Graph Tutorial');
+      container.appendChild(heading);
+
+      let lead = createElement('p', 'lead',
         'This sample app shows how to use the Microsoft Graph API to access' +
         ' a user\'s data from JavaScript.');
-      jumbotron.appendChild(lead);
+        container.appendChild(lead);
 
       if (user) {
         // Welcome the user by name
-        var welcomeMessage = createElement('h4', null, `Welcome ${user.displayName}!`);
-        jumbotron.appendChild(welcomeMessage);
+        let welcomeMessage = createElement('h4', null, `Welcome ${user.displayName}!`);
+        container.appendChild(welcomeMessage);
 
-        var callToAction = createElement('p', null,
+        let callToAction = createElement('p', null,
           'Use the navigation bar at the top of the page to get started.');
-        jumbotron.appendChild(callToAction);
+        container.appendChild(callToAction);
       } else {
         // Show a sign in button in the jumbotron
-        var signInButton = createElement('button', 'btn btn-primary btn-large',
+        let signInButton = createElement('button', 'btn btn-primary btn-large',
           'Click here to sign in');
         signInButton.setAttribute('onclick', 'signIn();')
-        jumbotron.appendChild(signInButton);
+        container.appendChild(signInButton);
       }
 
       mainContainer.innerHTML = '';
