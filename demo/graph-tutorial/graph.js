@@ -2,16 +2,21 @@
 // Licensed under the MIT License.
 
 // <graphInitSnippet>
-// Create an authentication provider
-const authProvider = {
-  getAccessToken: async () => {
-    // Call getToken in auth.js
-    return await getToken();
-  }
-};
+let graphClient = undefined;
 
-// Initialize the Graph client
-const graphClient = MicrosoftGraph.Client.initWithMiddleware({authProvider});
+function initializeGraphClient(msalClient, account, scopes)
+{
+  // Create an authentication provider
+  const authProvider = new MSGraphAuthCodeMSALBrowserAuthProvider
+  .AuthCodeMSALBrowserAuthenticationProvider(msalClient, {
+    account: account,
+    scopes: scopes,
+    interactionType: msal.InteractionType.PopUp
+  });
+
+  // Initialize the Graph client
+  graphClient = MicrosoftGraph.Client.initWithMiddleware({authProvider});
+}
 // </graphInitSnippet>
 
 // <getUserSnippet>

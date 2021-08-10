@@ -28,8 +28,7 @@ In this section you'll implement the `signIn` and `signOut` functions.
         // Use MSAL to login
         const authResult = await msalClient.loginPopup(msalRequest);
         console.log('id_token acquired at: ' + new Date().toString());
-        // Save the account username, needed for token acquisition
-        sessionStorage.setItem('msalAccount', authResult.account.username);
+
         // TEMPORARY
         updatePage(Views.error, {
           message: 'Login successful',
@@ -57,15 +56,11 @@ In this section you'll implement the `signIn` and `signOut` functions.
 
 In this section you'll improve the `signIn` function to use the access token to get the user's profile from Microsoft Graph.
 
-1. Add the following function in **auth.js** to retrieve the user's access token.
-
-    :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="getTokenSnippet":::
-
 1. Create a new file in the root of the project named **graph.js** and add the following code.
 
     :::code language="javascript" source="../demo/graph-tutorial/graph.js" id="graphInitSnippet":::
 
-    This code creates an authorization provider that wraps the `getToken` method in **auth.js**, and initializes the Graph client with this provider.
+    This code creates an authorization provider and initializes the Graph client with this provider. It uses the `AuthCodeMSALBrowserAuthenticationProvider` provider from the Microsoft Graph SDK.
 
 1. Add the following function in **graph.js** to get the user's profile.
 

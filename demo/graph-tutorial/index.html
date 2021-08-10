@@ -10,10 +10,8 @@
   <title>JavaScript SPA Graph Tutorial</title>
 
   <link rel="shortcut icon" href="g-raph.png">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-        crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -27,11 +25,11 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul id="authenticated-nav" class="navbar-nav mr-auto"></ul>
-        <ul class="navbar-nav justify-content-end">
+        <ul id="authenticated-nav" class="navbar-nav me-auto"></ul>
+        <ul class="navbar-nav align-items-center justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" href="https://developer.microsoft.com/graph/docs/concepts/overview" target="_blank">
-              <i class="fas fa-external-link-alt mr-1"></i>Docs
+            <a class="nav-link" href="https://docs.microsoft.com/graph/overview" target="_blank">
+              &#x2197; Docs
             </a>
           </li>
           <li id="account-nav" class="nav-item"></li>
@@ -44,28 +42,23 @@
 
   </main>
 
-  <!-- Bootstrap/jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-          crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
           crossorigin="anonymous"></script>
 
   <!-- Moment.js -->
-  <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
   <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
 
   <!-- MSAL -->
-  <script src="https://alcdn.msauth.net/browser/2.1.0/js/msal-browser.min.js"
-          integrity="sha384-EmYPwkfj+VVmL1brMS1h6jUztl4QMS8Qq8xlZNgIT/luzg7MAzDVrRa2JxbNmk/e"
+  <script src="https://alcdn.msauth.net/browser/2.16.1/js/msal-browser.min.js"
+          integrity="sha384-bPBovDNeUf0pJstTMwF5tqVhjDS5DZPtI1qFzQI9ooDIAnK8ZCYox9HowDsKvz4i"
           crossorigin="anonymous"></script>
 
   <!-- Graph SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@microsoft/microsoft-graph-client/lib/graph-js-sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/microsoft-graph-client@3.0.0/lib/graph-js-sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/microsoft-graph-client@3.0.0/lib/graph-client-msalBrowserAuthProvider.js"></script>
 
   <script src="config.js"></script>
   <script src="timezones.js"></script>
