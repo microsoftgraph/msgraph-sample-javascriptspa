@@ -19,7 +19,7 @@ async function signIn() {
     initializeGraphClient(msalClient, authResult.account, msalRequest.scopes);
 
     // Get the user's profile from Graph
-    user = await getUser();
+    const user = await getUser();
     // Save the profile in session
     sessionStorage.setItem('graphUser', JSON.stringify(user));
     updatePage(Views.home);
