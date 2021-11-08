@@ -21,7 +21,7 @@ function initializeGraphClient(msalClient, account, scopes)
 
 // <getUserSnippet>
 async function getUser() {
-  return await graphClient
+  return graphClient
     .api('/me')
     // Only get the fields used by the app
     .select('id,displayName,mail,userPrincipalName,mailboxSettings')
@@ -43,7 +43,7 @@ async function getEvents() {
   // Get midnight on the start of the current week in the user's timezone,
   // but in UTC. For example, for Pacific Standard Time, the time value would be
   // 07:00:00Z
-  let startOfWeek = moment.tz('America/Los_Angeles').startOf('week').utc();
+  let startOfWeek = moment.tz(ianaTimeZone).startOf('week').utc();
   // Set end of the view to 7 days after start of week
   let endOfWeek = moment(startOfWeek).add(7, 'day');
 

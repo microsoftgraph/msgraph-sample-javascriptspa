@@ -66,6 +66,10 @@ In this section you'll improve the `signIn` function to use the access token to 
 
     :::code language="javascript" source="../demo/graph-tutorial/graph.js" id="getUserSnippet":::
 
+1. Add the following code **above** the `signIn` function in **auth.js**.
+
+    :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="checkAuthSnippet":::
+
 1. Replace the existing `signIn` function with the following.
 
     :::code language="javascript" source="../demo/graph-tutorial/auth.js" id="signInSnippet":::
