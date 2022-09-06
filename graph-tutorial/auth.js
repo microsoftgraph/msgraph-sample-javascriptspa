@@ -1,4 +1,7 @@
 
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 // <authInitSnippet>
 // Create the main MSAL instance
 // configuration parameters are located in config.js
