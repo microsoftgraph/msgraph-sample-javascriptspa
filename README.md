@@ -43,11 +43,14 @@ Create a new Azure AD web application registration using the Azure Active Direct
 
 ## Configure the sample
 
- Start a local web server (optional)
+1. Rename the `./graph-tutorial/src/Config.example.ts` file to `./graph-tutorial/src/Config.ts`.
+1. Edit the `./graph-tutorial/src/Config.ts` file and make the following changes.
+1. Replace `YOUR_APP_ID_HERE` with the **Application Id** you got from the App Registration Portal.
 
 > [!NOTE]
 > The steps in this section require [Node.js](https://nodejs.org).
 
+## Running the sample
 In this section you will use [http-server](https://www.npmjs.com/package/http-server) to run a simple HTTP server from the command line.
 
 1. Open your command-line interface (CLI) in the directory you created for the project.
@@ -56,8 +59,7 @@ In this section you will use [http-server](https://www.npmjs.com/package/http-se
     ```Shell
     npx http-server -c-1
     ```
-## Running the sample
-Open your browser and browse to `http://localhost:8080`.
+1. Open your browser and browse to `http://localhost:8080`.
 
 ## Code of conduct
 
