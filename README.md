@@ -15,7 +15,7 @@ This sample demonstrates how to use the Microsoft Graph JavaScript SDK to access
 
 ## Prerequisites
 
-Before you start this tutorial, you will need access to an HTTP server to host the sample files. This could be a test server on your development machine, or a remote server. The tutorial includes instructions to use a Node.js package to run a simple test server on your development machine. If you plan to use this option, you should have [Node.js](https://nodejs.org) installed on your development machine. If you do not have Node.js, visit the previous link for download options.
+Before you start this tutorial, you will need access to an HTTP server to host the sample files. This could be a test server on your development machine, or a remote server.
 
 You should also have either a personal Microsoft account with a mailbox on Outlook.com, or a Microsoft work or school account. If you don't have a Microsoft account, there are a couple of options to get a free account:
 
@@ -31,7 +31,7 @@ Create a new Azure AD web application registration using the Azure Active Direct
 1. Select **Azure Active Directory** in the left-hand navigation, then select **App registrations** under **Manage**.
 
     > [!NOTE]
-    > Azure AD B2C users may only see **App registrations (legacy)**. In this case, please go directly to https://aka.ms/appregistrations.
+    > Azure AD B2C users may only see **App registrations (legacy)**. In this case, please go directly to [https://aka.ms/appregistrations](https://aka.ms/appregistrations).
 
 1. Select **New registration**. On the **Register an application** page, set the values as follows.
 
@@ -43,22 +43,41 @@ Create a new Azure AD web application registration using the Azure Active Direct
 
 ## Configure the sample
 
-1. Rename the `./graph-tutorial/src/Config.example.ts` file to `./graph-tutorial/src/Config.ts`.
-1. Edit the `./graph-tutorial/src/Config.ts` file and make the following changes.
+1. Rename the `./graph-tutorial/src/Config.example.js` file to `./graph-tutorial/src/Config.js`.
+1. Edit the `./graph-tutorial/src/Config.js` file and make the following changes.
 1. Replace `YOUR_APP_ID_HERE` with the **Application Id** you got from the App Registration Portal.
 
 > [!NOTE]
 > The steps in this section require [Node.js](https://nodejs.org).
 
 ## Running the sample
-In this section you will use [http-server](https://www.npmjs.com/package/http-server) to run a simple HTTP server from the command line.
 
-1. Open your command-line interface (CLI) in the directory you created for the project.
+Host the files in the [graph-tutorial](graph-tutorial) directory on your HTTP server. If you don't have access to a server, here are a couple of options for test server tools to run on your development machine.
+
+### http-server
+
+If you have [Node.js](https://nodejs.org), [http-server](https://www.npmjs.com/package/http-server) is a simple command-line HTTP server.
+
+1. Open your command-line interface (CLI) in the **graph-tutorial** directory.
 1. Run the following command to start a web server in that directory.
 
-    ```Shell
-    npx http-server -c-1
+    ```bash
+    npx http-server -c-1 -p 8080
     ```
+
+1. Open your browser and browse to `http://localhost:8080`.
+
+### dotnet-serve
+
+If you have the .NET SDK installed, [dotnet-serve] is a simple command-line HTTP server.
+
+1. Open your command-line interface (CLI) in the **graph-tutorial** directory.
+1. Run the following command to start a web server in that directory.
+
+    ```bash
+    dotnet serve -p 8080
+    ```
+
 1. Open your browser and browse to `http://localhost:8080`.
 
 ## Code of conduct
