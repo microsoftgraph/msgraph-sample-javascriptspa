@@ -21,15 +21,15 @@ function initializeGraphClient(msalClient, account, scopes)
 
 // <getUserSnippet>
 async function getUser() {
-  return graphClient
-    .api('/me')
-    // Only get the fields used by the app
-    .select('id,displayName,mail,userPrincipalName,mailboxSettings')
-    .get();
-}
-// </getUserSnippet>
+    return graphClient
+      .api('/me')
+      // Only get the fields used by the app
+      .select('id,displayName,mail,userPrincipalName,mailboxSettings')
+      .get();
+  }
+  // </getUserSnippet>
 
-// <getEventsSnippet>
+  // <getEventsSnippet>
 async function getEvents() {
   const user = JSON.parse(sessionStorage.getItem('graphUser'));
 

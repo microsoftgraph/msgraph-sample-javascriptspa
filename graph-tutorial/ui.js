@@ -1,5 +1,5 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+//Copyright (c) Microsoft Corporation.
+//Licensed under the MIT License.
 
 // Select DOM elements to work with
 const authenticatedNav = document.getElementById('authenticated-nav');
@@ -9,11 +9,11 @@ const mainContainer = document.getElementById('main-container');
 const Views = { error: 1, home: 2, calendar: 3 };
 
 function createElement(type, className, text) {
-  let element = document.createElement(type);
+  var element = document.createElement(type);
   element.className = className;
 
   if (text) {
-    let textNode = document.createTextNode(text);
+    var textNode = document.createTextNode(text);
     element.appendChild(textNode);
   }
 
@@ -25,9 +25,9 @@ function showAuthenticatedNav(user, view) {
 
   if (user) {
     // Add Calendar link
-    let calendarNav = createElement('li', 'nav-item');
+    var calendarNav = createElement('li', 'nav-item');
 
-    let calendarLink = createElement('button',
+    var calendarLink = createElement('button',
       `btn btn-link nav-link${view === Views.calendar ? ' active' : '' }`,
       'Calendar');
     calendarLink.setAttribute('onclick', 'getEvents();');
@@ -38,14 +38,13 @@ function showAuthenticatedNav(user, view) {
 }
 
 function showAccountNav(user) {
-
   accountNav.innerHTML = '';
 
   if (user) {
     // Show the "signed-in" nav
     accountNav.className = 'nav-item dropdown';
 
-    let dropdown = createElement('a', 'nav-link dropdown-toggle');
+    var dropdown = createElement('a', 'nav-link dropdown-toggle');
     dropdown.setAttribute('data-bs-toggle', 'dropdown');
     dropdown.setAttribute('role', 'button');
     accountNav.appendChild(dropdown);
@@ -56,26 +55,26 @@ function showAccountNav(user) {
     userIcon.alt = 'user';
     dropdown.appendChild(userIcon);
 
-    let menu = createElement('div', 'dropdown-menu dropdown-menu-end');
+    var menu = createElement('div', 'dropdown-menu dropdown-menu-end');
     accountNav.appendChild(menu);
 
-    let userName = createElement('h5', 'dropdown-item-text mb-0', user.displayName);
+    var userName = createElement('h5', 'dropdown-item-text mb-0', user.displayName);
     menu.appendChild(userName);
 
-    let userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', user.mail || user.userPrincipalName);
+    var userEmail = createElement('p', 'dropdown-item-text text-muted mb-0', user.mail || user.userPrincipalName);
     menu.appendChild(userEmail);
 
-    let divider = createElement('hr', 'dropdown-divider');
+    var divider = createElement('hr', 'dropdown-divider');
     menu.appendChild(divider);
 
-    let signOutButton = createElement('button', 'dropdown-item', 'Sign out');
+    var signOutButton = createElement('button', 'dropdown-item', 'Sign out');
     signOutButton.setAttribute('onclick', 'signOut();');
     menu.appendChild(signOutButton);
   } else {
     // Show a "sign in" button
     accountNav.className = 'nav-item';
 
-    let signInButton = createElement('button', 'btn btn-link nav-link', 'Sign in');
+    var signInButton = createElement('button', 'btn btn-link nav-link', 'Sign in');
     signInButton.setAttribute('onclick', 'signIn();');
     accountNav.appendChild(signInButton);
   }
@@ -117,17 +116,17 @@ function showWelcomeMessage(user) {
 }
 
 function showError(error) {
-  let alert = createElement('div', 'alert alert-danger');
+  var alert = createElement('div', 'alert alert-danger');
 
-  let message = createElement('p', 'mb-3', error.message);
+  var message = createElement('p', 'mb-3', error.message);
   alert.appendChild(message);
 
   if (error.debug)
   {
-    let pre = createElement('pre', 'alert-pre border bg-light p-2');
+    var pre = createElement('pre', 'alert-pre border bg-light p-2');
     alert.appendChild(pre);
 
-    let code = createElement('code', 'text-break text-wrap',
+    var code = createElement('code', 'text-break text-wrap',
       JSON.stringify(error.debug, null, 2));
     pre.appendChild(code);
   }
@@ -135,6 +134,53 @@ function showError(error) {
   mainContainer.innerHTML = '';
   mainContainer.appendChild(alert);
 }
+
+function updatePage(view, data) {
+  if (!view) {
+    view = Views.home;
+  }
+
+  const user = JSON.parse(sessionStorage.getItem('graphUser'));
+
+  showAccountNav(user);
+  showAuthenticatedNav(user, view);
+
+  switch (view) {
+    case Views.error:
+      showError(data);
+      break;
+    case Views.home:
+      showWelcomeMessage(user);
+      break;
+    case Views.calendar:
+      break;
+  }
+}
+
+// <updatePageSnippet>
+function updatePage(view, data) {
+  if (!view) {
+    view = Views.home;
+  }
+
+  const user = JSON.parse(sessionStorage.getItem('graphUser'));
+
+  showAccountNav(user);
+  showAuthenticatedNav(user, view);
+
+  switch (view) {
+    case Views.error:
+      showError(data);
+      break;
+    case Views.home:
+      showWelcomeMessage(user);
+      break;
+    case Views.calendar:
+      showCalendar(data);
+      break;
+  }
+}
+// </updatePageSnippet>
 
 // <showCalendarSnippet>
 function showCalendar(events) {
@@ -279,30 +325,5 @@ function showNewEventForm() {
   mainContainer.appendChild(form);
 }
 // </showNewEventFormSnippet>
-
-// <updatePageSnippet>
-function updatePage(view, data) {
-  if (!view) {
-    view = Views.home;
-  }
-
-  const user = JSON.parse(sessionStorage.getItem('graphUser'));
-
-  showAccountNav(user);
-  showAuthenticatedNav(user, view);
-
-  switch (view) {
-    case Views.error:
-      showError(data);
-      break;
-    case Views.home:
-      showWelcomeMessage(user);
-      break;
-    case Views.calendar:
-      showCalendar(data);
-      break;
-  }
-}
-// </updatePageSnippet>
 
 updatePage(Views.home);
